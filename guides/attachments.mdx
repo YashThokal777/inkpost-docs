@@ -1,0 +1,16 @@
+---
+title: Attachments
+description: Attach files to a message.
+---
+
+Add files to the `attachments` array. Each file needs a `filename` and its content as Base64.
+
+```json
+{
+  "attachments": [
+    { "filename": "receipt.pdf", "content": "JVBERi0xLjQK..." }
+  ]
+}
+```
+
+The maximum attachment size is 10 MB per message, counting all files together.

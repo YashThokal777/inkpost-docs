@@ -1,0 +1,20 @@
+# Runs TruthLayer on every pull request and comments with outdated or conflicting facts.
+name: TruthLayer
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  knowledge-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: YashThokal777/truthlayer@main
+        with:
+          strict: 'false'

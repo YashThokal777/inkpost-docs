@@ -1,0 +1,39 @@
+---
+title: Quickstart
+description: Install the SDK and send your first email in five minutes.
+---
+
+<Steps>
+<Step title="Create an API key" icon="key">
+
+In the Inkpost dashboard, open **Settings → API keys** and create a key.
+
+</Step>
+<Step title="Install the SDK" icon="terminal">
+
+The Inkpost SDK requires Node.js 20 or later.
+
+```bash
+npm install inkpost
+```
+
+</Step>
+<Step title="Send an email" icon="send">
+
+```javascript
+import { Inkpost } from 'inkpost';
+
+const inkpost = new Inkpost(process.env.INKPOST_API_KEY);
+
+await inkpost.messages.send({
+  from: 'hello@yourapp.com',
+  to: 'user@example.com',
+  subject: 'Welcome!',
+  text: 'Thanks for signing up.'
+});
+```
+
+</Step>
+</Steps>
+
+The SDK calls `POST /v1/messages` for you. See [Send your first email](/guides/send-email) for the raw API call.

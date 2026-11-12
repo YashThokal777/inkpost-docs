@@ -1,0 +1,51 @@
+{
+  "name": "Inkpost",
+  "initialRoute": "getting-started/introduction",
+  "colors": {
+    "light": { "brand": "#0F766E" },
+    "dark": { "brand": "#5EEAD4" }
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Guides",
+        "icon": "book",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "icon": "rocket",
+            "pages": [
+              { "title": "Introduction", "path": "getting-started/introduction", "icon": "star" },
+              { "title": "Quickstart", "path": "getting-started/quickstart", "icon": "zap" },
+              { "title": "Authentication", "path": "getting-started/authentication", "icon": "key" }
+            ]
+          },
+          {
+            "group": "Guides",
+            "icon": "book-open",
+            "pages": [
+              { "title": "Send your first email", "path": "guides/send-email", "icon": "send" },
+              { "title": "Attachments", "path": "guides/attachments", "icon": "paperclip" },
+              { "title": "Webhooks and events", "path": "guides/events", "icon": "webhook" },
+              { "title": "Plans and limits", "path": "guides/plans-and-limits", "icon": "gauge" },
+              { "title": "FAQ", "path": "guides/faq", "icon": "circle-help" }
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "icon": "code",
+        "groups": [
+          {
+            "group": "REST API",
+            "openapi": "api-reference/openapi.yaml",
+            "pages": [
+              { "title": "Overview", "path": "api-reference/overview" }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

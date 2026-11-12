@@ -1,0 +1,108 @@
+openapi: 3.0.3
+info:
+  title: Inkpost API
+  version: 2.0.0
+  description: |
+    Send transactional email. Every API key can make 600 requests per minute.
+servers:
+  - url: https://api.inkpost.example/v1
+x-rate-limit:
+  limit: 600
+  period: minute
+security:
+  - bearerAuth: []
+paths:
+  /messages:
+    post:
+      operationId: sendMessage
+      summary: Send an email
+      tags: [Messages]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewMessage'
+      responses:
+        '202':
+          description: The message was accepted for delivery.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+    get:
+      operationId: listMessages
+      summary: List sent messages
+      tags: [Messages]
+      parameters:
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: A page of messages.
+  /messages/{messageId}:
+    get:
+      operationId: getMessage
+      summary: Get a message
+      tags: [Messages]
+      parameters:
+        - name: messageId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: One message.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+  /send:
+    post:
+      operationId: sendLegacy
+      summary: Send an email (old)
+      deprecated: true
+      description: Use POST /messages instead.
+      tags: [Messages]
+      responses:
+        '202':
+          description: Accepted.
+  /events:
+    get:
+      operationId: listEvents
+      summary: List events
+      tags: [Events]
+      parameters:
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: A page of events.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      description: How many items to return.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+  schemas:
+    NewMessage:
+      type: object
+      required: [from, to, subject]
+      properties:
+        from: { type: string, example: hello@yourapp.com }
+        to: { type: string, example: user@example.com }
+        subject: { type: string, example: Welcome! }
+        text: { type: string, example: Thanks for signing up. }
+    Message:
+      type: object
+      properties:
+        id: { type: string, example: msg_123 }
+        status: { type: string, example: queued }

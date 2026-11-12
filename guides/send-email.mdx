@@ -1,0 +1,24 @@
+---
+title: Send your first email
+description: Send an email with a single API call.
+---
+
+Use `POST /v1/messages` to send an email.
+
+```bash
+curl -X POST https://api.inkpost.example/v1/messages \
+  -H "Authorization: Bearer $INKPOST_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "from": "hello@yourapp.com",
+    "to": "user@example.com",
+    "subject": "Welcome!",
+    "text": "Thanks for signing up."
+  }'
+```
+
+The response contains the message `id`. Use it with `GET /v1/messages/{messageId}` to check the delivery status.
+
+## List sent messages
+
+`GET /v1/messages` returns your messages, newest first. You can request up to 100 messages per page with the `limit` parameter.

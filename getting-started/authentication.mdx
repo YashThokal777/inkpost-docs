@@ -1,0 +1,19 @@
+---
+title: Authentication
+description: Authenticate every request with your API key.
+---
+
+Send your API key in the `Authorization` header as a bearer token:
+
+```bash
+curl https://api.inkpost.example/v1/messages \
+  -H "Authorization: Bearer $INKPOST_API_KEY"
+```
+
+<Callout kind="warning">
+Keep your API key secret. Never put it in client-side code or commit it to Git.
+</Callout>
+
+## Rate limits
+
+Each API key can make 600 requests per minute. When you go over the limit, the API returns `429 Too Many Requests` with a `Retry-After` header.

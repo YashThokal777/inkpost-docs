@@ -1,0 +1,18 @@
+# TruthLayer checks these docs against the OpenAPI spec and changelog.
+name: Inkpost Assistant
+
+sources:
+  - type: markdown
+    path: ./getting-started
+  - type: markdown
+    path: ./guides
+  - type: markdown
+    path: ./api-reference
+  - type: openapi
+    path: ./api-reference/openapi.yaml
+  - type: changelog
+    path: ./CHANGELOG.md
+
+check:
+  stale_after_days: 180
+  fail_on: never

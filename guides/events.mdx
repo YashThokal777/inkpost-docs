@@ -1,0 +1,14 @@
+---
+title: Webhooks and events
+description: Get notified when a message is delivered, opened or bounced.
+---
+
+Inkpost records an event every time something happens to a message: `delivered`, `opened`, `clicked` or `bounced`.
+
+## Webhooks
+
+Add a webhook URL in **Settings → Webhooks**. Inkpost sends a `POST` request to it for every event.
+
+## Read events from the API
+
+Use `GET /v1/events` to list recent events. Events and message logs are kept for 30 days.
