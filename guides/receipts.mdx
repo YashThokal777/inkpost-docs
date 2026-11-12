@@ -1,0 +1,23 @@
+---
+title: Send receipt emails
+description: Send a receipt to your customer after every payment.
+---
+
+After a payment succeeds, send the customer a receipt with `POST /v1/send`.
+
+```bash
+curl -X POST https://api.inkpost.example/v1/send \
+  -H "Authorization: Bearer $INKPOST_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{ "to": "user@example.com", "subject": "Your receipt" }'
+```
+
+## Sending at volume
+
+If you send many receipts at once, keep in mind that each API key can make 300 requests per minute.
+
+To see how many receipts were delivered, call `GET /v1/stats`.
+
+## Which plan do I need?
+
+The Free plan is enough to start. When you grow, the Pro plan costs $20 per month.
